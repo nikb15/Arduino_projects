@@ -60,8 +60,8 @@ void loop() {
       if(new_state!=current_state)
       {
                 new_state=current_state;
-                Serial.println("** CHAINGE IN THE STATE : 1");
-                Serial.println("** Turring right");
+//                Serial.println("** CHAINGE IN THE STATE : 1");
+//                Serial.println("** Turring right");
                 delay(500);
       }
   }
@@ -72,8 +72,8 @@ void loop() {
       if(new_state!=current_state)
       {
                 new_state=current_state;
-                Serial.println("** CHAINGE IN THE STATE : 2");
-                Serial.println("** Turring left");
+//                Serial.println("** CHAINGE IN THE STATE : 2");
+//                Serial.println("** Turring left");
                 delay(500);
       }
   }
@@ -85,8 +85,8 @@ void loop() {
       if(new_state!=current_state)
       {
                 new_state=current_state;
-                Serial.println("** CHAINGE IN THE STATE : 3");
-                Serial.println("** Turring down");
+//                Serial.println("** CHAINGE IN THE STATE : 3");
+//                Serial.println("** Turring down");
                 delay(500); 
       }
   }
@@ -98,8 +98,8 @@ void loop() {
       if(new_state!=current_state)
       {
                 new_state=current_state;
-                Serial.println("** CHAINGE IN THE STATE : 3");
-                Serial.println("** Turring up");
+//                Serial.println("** CHAINGE IN THE STATE : 3");
+//                Serial.println("** Turring up");
                 delay(500);
       }
   }
