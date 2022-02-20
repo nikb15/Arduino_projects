@@ -12,24 +12,26 @@ void loop() {
   while (Serial.available() > 0)
   {
     recived_state = Serial.read();
+    Serial.println(recived_state);
     if (recived_state != current_state)
     {
       current_state = recived_state;
+      
       switch (current_state)
       {
         case 1:
           Serial.println("User Moving toward right");
           break;
         case 2:
-              Serial.println("USerMoving towwards left");
+          Serial.println("USerMoving towwards left");
           break;
         case 3:
-              Serial.println("USerMoving towwards down");
-          
+          Serial.println("USerMoving towwards up");
+
           break;
         case 4:
-              Serial.println("USerMoving towwards up");
-      
+          Serial.println("USerMoving towwards down");
+
           break;
       }
     }

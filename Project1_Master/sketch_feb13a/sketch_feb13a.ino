@@ -2,7 +2,7 @@
 #include <Adafruit_Sensor.h>
 #include <Wire.h>
 #include <SoftwareSerial.h>
-SoftwareSerial BTserial(2, 3); // RX | TX
+SoftwareSerial BTserial(5, 6); // RX | TX
 
 int current_state=100;
 int new_state=100;
@@ -43,15 +43,15 @@ void loop() {
    * 4 =down 
    */
   /* Print out the values */
-//  Serial.print("Acceleration X: ");
-//  Serial.print(a.acceleration.x);
-//  Serial.print(", Y: ");
-//  Serial.print(a.acceleration.y);
-//  Serial.print(", Z: ");
-//  Serial.print(a.acceleration.z);
-//  Serial.println(" m/s^2");
-//  Serial.println("");
-//  delay(300);
+  Serial.print("Acceleration X: ");
+  Serial.print(a.acceleration.x);
+  Serial.print(", Y: ");
+  Serial.print(a.acceleration.y);
+  Serial.print(", Z: ");
+  Serial.print(a.acceleration.z);
+  Serial.println(" m/s^2");
+  Serial.println("");
+  delay(300);
 
   if(a.acceleration.y<-2.50  )
   {
@@ -60,8 +60,8 @@ void loop() {
       if(new_state!=current_state)
       {
                 new_state=current_state;
-//                Serial.println("** CHAINGE IN THE STATE : 1");
-//                Serial.println("** Turring right");
+                Serial.println("** CHAINGE IN THE STATE : 1");
+                Serial.println("** Turring right");
                 delay(500);
       }
   }
@@ -72,8 +72,8 @@ void loop() {
       if(new_state!=current_state)
       {
                 new_state=current_state;
-//                Serial.println("** CHAINGE IN THE STATE : 2");
-//                Serial.println("** Turring left");
+                Serial.println("** CHAINGE IN THE STATE : 2");
+                Serial.println("** Turring left");
                 delay(500);
       }
   }
@@ -85,8 +85,8 @@ void loop() {
       if(new_state!=current_state)
       {
                 new_state=current_state;
-//                Serial.println("** CHAINGE IN THE STATE : 3");
-//                Serial.println("** Turring down");
+                Serial.println("** CHAINGE IN THE STATE : 4");
+                Serial.println("** Turring down");
                 delay(500); 
       }
   }
@@ -98,8 +98,8 @@ void loop() {
       if(new_state!=current_state)
       {
                 new_state=current_state;
-//                Serial.println("** CHAINGE IN THE STATE : 3");
-//                Serial.println("** Turring up");
+                Serial.println("** CHAINGE IN THE STATE : 3");
+                Serial.println("** Turring up");
                 delay(500);
       }
   }
