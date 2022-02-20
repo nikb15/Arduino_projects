@@ -105,4 +105,5 @@ void loop() {
   }
 
   BTserial.write(new_state);
+//Cehcking
 }
