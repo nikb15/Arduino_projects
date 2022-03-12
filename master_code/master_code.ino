@@ -1,4 +1,4 @@
-#include <Adafruit_MPU6050.h>
+#include  <Adafruit_MPU6050.h>
 #include <Adafruit_Sensor.h>
 #include <Wire.h>
 #include <SoftwareSerial.h>
@@ -51,7 +51,7 @@ void loop() {
   Serial.print(a.acceleration.z);
   Serial.println(" m/s^2");
   Serial.println("");
-  delay(300);
+  delay(100);
 
   if(a.acceleration.y<-2.50  )
   {
@@ -62,7 +62,7 @@ void loop() {
                 new_state=current_state;
                 Serial.println("** CHAINGE IN THE STATE : 1");
                 Serial.println("** Turring right");
-                delay(500);
+                //delay(500);
       }
   }
   else if(a.acceleration.y>2.50  )
@@ -74,7 +74,7 @@ void loop() {
                 new_state=current_state;
                 Serial.println("** CHAINGE IN THE STATE : 2");
                 Serial.println("** Turring left");
-                delay(500);
+                //delay(500);
       }
   }
 
@@ -87,7 +87,7 @@ void loop() {
                 new_state=current_state;
                 Serial.println("** CHAINGE IN THE STATE : 4");
                 Serial.println("** Turring down");
-                delay(500); 
+                //delay(500); 
       }
   }
 
@@ -100,7 +100,7 @@ void loop() {
                 new_state=current_state;
                 Serial.println("** CHAINGE IN THE STATE : 3");
                 Serial.println("** Turring up");
-                delay(500);
+                //delay(500);
       }
   }
 

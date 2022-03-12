@@ -7,15 +7,15 @@
 #include <Adafruit_SSD1306.h>
 
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
-#define SCREEN_HEIGHT 64 // OLED display height, in pixels
+#define SCREEN_HEIGHT 32 // OLED display height, in pixels
 
 // Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
-// The pins for I2C are defined by the Wire-library.
+// The pins for I2C are defined by the Wire-library. `
 // On an arduino UNO:       A4(SDA), A5(SCL)
 // On an arduino MEGA 2560: 20(SDA), 21(SCL)
 // On an arduino LEONARDO:   2(SDA),  3(SCL), ...
 #define OLED_RESET     4 // Reset pin # (or -1 if sharing Arduino reset pin)
-#define SCREEN_ADDRESS 0x3D ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
+#define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 #define NUMFLAKES     10 // Number of snowflakes in the animation example
@@ -39,7 +39,8 @@ static const unsigned char PROGMEM logo_bmp[] =
   0b01111100, 0b11110000,
   0b01110000, 0b01110000,
   0b00000000, 0b00110000
-};//END
+};
+
 
 int recived_state = -1;
 int current_state = -1;
@@ -48,10 +49,12 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
   pinMode(8, OUTPUT);
-
-  if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+  digitalWrite(8, LOW);
+  delay(500);
+  digitalWrite(8, HIGH);
+  if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
     Serial.println(F("SSD1306 allocation failed"));
-    for(;;); // Don't proceed, loop forever
+    for (;;); // Don't proceed, loop forever
   }
 
   // Show initial display buffer contents on the screen --
@@ -62,18 +65,23 @@ void setup() {
   // Clear the buffer
   display.clearDisplay();
 
+  // Draw a single pixel in white
+  //display.drawPixel(10, 10, SSD1306_WHITE);
+
+  // Show the display buffer on the screen. You MUST call display() after
+  // drawing commands to make them visible on screen!
+  //display.display();
+
+  //delay(2000);
+  testdrawstyles(-1);    // Draw 'stylized' characters
+  testscrolltext(-1);
 }
 
-void loop() { 
+void loop() {
   // put your main code here, to run repeatedly:
   digitalWrite(8, HIGH);
-  display.setCursor(10, 0);
-  display.println("Welcome");
-  display.display();
   while (Serial.available() > 0)
   {
-
-
     recived_state = Serial.read();
     Serial.println(recived_state);
     if (recived_state != current_state)
@@ -90,19 +98,109 @@ void loop() {
       {
         case 1:
           Serial.println("User Moving toward right");
+                    testdrawstyles(1);
+          testscrolltext(1);
           break;
         case 2:
           Serial.println("USerMoving towwards left");
+                    testdrawstyles(2);
+          testscrolltext(2);
           break;
         case 3:
           Serial.println("USerMoving towwards up");
-
+          testdrawstyles(3);
+          testscrolltext(3);
           break;
         case 4:
           Serial.println("USerMoving towwards down");
-
+          testdrawstyles(4);
+          testscrolltext(4);
           break;
       }
     }
   }
+}
+
+
+
+void testdrawstyles(int num) {
+  display.clearDisplay();
+
+  display.setTextSize(2);             // Normal 1:1 pixel scale
+  display.setTextColor(SSD1306_WHITE);        // Draw white text
+  display.setCursor(0, 0);            // Start at top-left corner
+  //  if(num==5){display.println(F("Hello, world!"));}
+  //  else{
+  //    display.println(F("fuck off"));
+  //    }
+  if (num == 1)
+  {
+    display.println(F("Turning Right"));
+  }
+  else if (num == 2)
+  {
+    display.println(F("Turning Left"));
+  }
+  else if (num == 3)
+  {
+    display.println(F("Turning Up"));
+  }
+  else if (num == 4)
+  {
+    display.println(F("Turing Down"));
+  }
+  else
+  {
+    display.println(F("Welcome Console"));
+  }
+  display.display();
+  delay(2000);
+}
+
+void testscrolltext(int num) {
+  display.clearDisplay();
+
+  display.setTextSize(2); // Draw 2X-scale text
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(10, 0);
+  //  display.println(F("scroll"));
+  if (num == 1)
+  {
+    display.println(F("Right"));
+  }
+  else if (num == 2)
+  {
+    display.println(F("Left"));
+  }
+  else if (num == 3)
+  {
+    display.println(F("Up"));
+  }
+  else if (num == 4)
+  {
+    display.println(F("Down"));
+  }
+  else
+  {
+    display.println(F("No Input"));
+  }
+
+  display.display();      // Show initial text
+  delay(100);
+
+  // Scroll in various directions, pausing in-between:
+  display.startscrollright(0x00, 0x0F);
+  delay(2000);
+  display.stopscroll();
+  delay(1000);
+  display.startscrollleft(0x00, 0x0F);
+  delay(2000);
+  display.stopscroll();
+  delay(1000);
+  display.startscrolldiagright(0x00, 0x07);
+  delay(2000);
+  display.startscrolldiagleft(0x00, 0x07);
+  delay(2000);
+  display.stopscroll();
+  delay(1000);
 }
