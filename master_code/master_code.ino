@@ -7,7 +7,8 @@ SoftwareSerial BTserial(5, 6); // RX | TX
 int current_state=100;
 int new_state=100;
 Adafruit_MPU6050 mpu;
-
+double curr_x=0;
+double curr_y=0;
 void setup(void) {
   Serial.begin(115200);
   BTserial.begin(115200);
@@ -53,7 +54,9 @@ void loop() {
   Serial.println("");
   delay(100);
 
-  if(a.acceleration.y<-2.50  )
+  
+
+  if(a.acceleration.y<-3.50  && a.acceleration.y>-8.50  )
   {
       //Changes to right 
       current_state= 1;
@@ -62,10 +65,10 @@ void loop() {
                 new_state=current_state;
                 Serial.println("** CHAINGE IN THE STATE : 1");
                 Serial.println("** Turring right");
-                //delay(500);
+                delay(500);
       }
   }
-  else if(a.acceleration.y>2.50  )
+  else if(a.acceleration.y>4.0 && a.acceleration.y<9.50   )
   {
       //Changes to right 
       current_state= 2;
@@ -74,11 +77,11 @@ void loop() {
                 new_state=current_state;
                 Serial.println("** CHAINGE IN THE STATE : 2");
                 Serial.println("** Turring left");
-                //delay(500);
+                delay(500);
       }
   }
 
-  else if(a.acceleration.z<-2.50  )
+  else if(a.acceleration.x<-3.50 && a.acceleration.x>-9.00  )
   {
       //Changes to right 
       current_state= 4;
@@ -87,11 +90,11 @@ void loop() {
                 new_state=current_state;
                 Serial.println("** CHAINGE IN THE STATE : 4");
                 Serial.println("** Turring down");
-                //delay(500); 
+                delay(500); 
       }
   }
 
-  else if(a.acceleration.z>2.50  )
+  else if(a.acceleration.x>3.50&&a.acceleration.x< 9.0  )
   {
       //Changes to right 
       current_state= 3;
@@ -100,7 +103,7 @@ void loop() {
                 new_state=current_state;
                 Serial.println("** CHAINGE IN THE STATE : 3");
                 Serial.println("** Turring up");
-                //delay(500);
+                delay(500);
       }
   }
 

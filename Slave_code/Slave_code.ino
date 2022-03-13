@@ -131,19 +131,23 @@ void testdrawstyles(int num) {
   display.setCursor(0, 0);            // Start at top-left corner
   if (num == 1)
   {
-    display.println(F("Turning Right"));
+    //Right
+    display.println(F("Need water"));
   }
   else if (num == 2)
   {
-    display.println(F("Turning Left"));
+    //LEFT
+    display.println(F("Need Food"));
   }
   else if (num == 3)
   {
-    display.println(F("Turning Up"));
+    //UP
+    display.println(F("Some Emergency"));
   }
   else if (num == 4)
   {
-    display.println(F("Turing Down"));
+    //Down
+    display.println(F("Need to use Washroom"));
   }
   else
   {
@@ -162,19 +166,22 @@ void testscrolltext(int num) {
   //  display.println(F("scroll"));
   if (num == 1)
   {
-    display.println(F("Right"));
+    //Right
+    display.println(F("Water"));
   }
   else if (num == 2)
   {
-    display.println(F("Left"));
+    //LEft
+    display.println(F("Food"));
   }
   else if (num == 3)
   {
-    display.println(F("Up"));
+    //Up
+    display.println(F("Washroom"));
   }
   else if (num == 4)
   {
-    display.println(F("Down"));
+    display.println(F("Emergency"));
   }
   else
   {
