@@ -178,7 +178,7 @@ void testscrolltext(int num) {
   }
   else
   {
-    display.println(F("Tracking"));
+    display.println(F("Tracking.."));
   }
 
   display.display();      // Show initial text
