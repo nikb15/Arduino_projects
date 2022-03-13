@@ -129,10 +129,6 @@ void testdrawstyles(int num) {
   display.setTextSize(2);             // Normal 1:1 pixel scale
   display.setTextColor(SSD1306_WHITE);        // Draw white text
   display.setCursor(0, 0);            // Start at top-left corner
-  //  if(num==5){display.println(F("Hello, world!"));}
-  //  else{
-  //    display.println(F("fuck off"));
-  //    }
   if (num == 1)
   {
     display.println(F("Turning Right"));
@@ -151,7 +147,7 @@ void testdrawstyles(int num) {
   }
   else
   {
-    display.println(F("Welcome Console"));
+    display.println(F("Welcome to System"));
   }
   display.display();
   delay(2000);
@@ -182,7 +178,7 @@ void testscrolltext(int num) {
   }
   else
   {
-    display.println(F("No Input"));
+    display.println(F("Tracking"));
   }
 
   display.display();      // Show initial text
