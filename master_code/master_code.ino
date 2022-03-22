@@ -56,7 +56,7 @@ void loop() {
 
   
 
-  if(a.acceleration.y<-3.50  && a.acceleration.y>-8.50  )
+  if(a.acceleration.y>4.25  && a.acceleration.y<8.50  )
   {
       //Changes to right 
       current_state= 1;
@@ -65,10 +65,10 @@ void loop() {
                 new_state=current_state;
                 Serial.println("** CHAINGE IN THE STATE : 1");
                 Serial.println("** Turring right");
-                delay(500);
+                delay(100);
       }
   }
-  else if(a.acceleration.y>4.0 && a.acceleration.y<9.50   )
+  else if(a.acceleration.y<-4.0 && a.acceleration.y>-9.50   )
   {
       //Changes to right 
       current_state= 2;
@@ -77,11 +77,11 @@ void loop() {
                 new_state=current_state;
                 Serial.println("** CHAINGE IN THE STATE : 2");
                 Serial.println("** Turring left");
-                delay(500);
+                delay(100);
       }
   }
 
-  else if(a.acceleration.x<-3.50 && a.acceleration.x>-9.00  )
+  else if(a.acceleration.x<-5.00 && a.acceleration.x>-9.00  )
   {
       //Changes to right 
       current_state= 4;
@@ -90,11 +90,11 @@ void loop() {
                 new_state=current_state;
                 Serial.println("** CHAINGE IN THE STATE : 4");
                 Serial.println("** Turring down");
-                delay(500); 
+                delay(100); 
       }
   }
 
-  else if(a.acceleration.x>3.50&&a.acceleration.x< 9.0  )
+  else if(a.acceleration.x<4.50&&a.acceleration.x>-1.75  )
   {
       //Changes to right 
       current_state= 3;
@@ -103,7 +103,7 @@ void loop() {
                 new_state=current_state;
                 Serial.println("** CHAINGE IN THE STATE : 3");
                 Serial.println("** Turring up");
-                delay(500);
+                delay(100);
       }
   }
 

@@ -142,12 +142,13 @@ void testdrawstyles(int num) {
   else if (num == 3)
   {
     //UP
-    display.println(F("Some Emergency"));
+    display.println(F("Need to use Washroom"));
   }
   else if (num == 4)
   {
     //Down
-    display.println(F("Need to use Washroom"));
+    
+    display.println(F("Some Emergency"));
   }
   else
   {
